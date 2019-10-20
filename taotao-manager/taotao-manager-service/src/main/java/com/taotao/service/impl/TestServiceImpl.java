@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import com.taotao.mapper.TestMapper;
 import com.taotao.service.TestService;
 
+/**
+ * @author kunlingou
+ * @date 2019/10/20
+ */
 @Service
 public class TestServiceImpl implements TestService{
 	@Autowired

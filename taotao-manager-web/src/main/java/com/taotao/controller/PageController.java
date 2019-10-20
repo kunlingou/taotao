@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * @author kunlingou
+ * @date 2019/10/20
+ */
 @Controller
 public class PageController {
 	/**

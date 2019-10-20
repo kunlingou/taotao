@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taotao.service.TestService;
 
+/**
+ * @author kunlingou
+ * @date 2019/10/20
+ */
 @Controller
 public class TestController {
 	@Autowired

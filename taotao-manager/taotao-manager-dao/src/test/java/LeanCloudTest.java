@@ -7,6 +7,10 @@ import cn.leancloud.core.AVOSCloud;
 import cn.leancloud.query.AVCloudQueryResult;
 import io.reactivex.Observable;
 
+/**
+ * @author kunlingou
+ * @date 2019/10/20
+ */
 public class LeanCloudTest {
 	
 	public static void main(String[] args) {
