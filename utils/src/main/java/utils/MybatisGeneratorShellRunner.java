@@ -29,14 +29,15 @@ import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 import org.mybatis.generator.logging.LogFactory;
+
 /**
- * 只需要在配置文件中修改数据库连接信息，设置需要导出的表，即可使用。<br>
+ * 只需要修改application.yml配置文件，即可使用。<br>
  * 可以识别的驱动名，包括但不限于：<br>
  * com.mysql.jdbc.Driver<br>
  * oracle.jdbc.driver.OracleDriver<br>
  * oracle.jdbc.OracleDriver<br>
- * @author zhangluru
- * @date 2019/10/19
+ * @author kunlingou
+ * @date 2019/10/20
  */
 public class MybatisGeneratorShellRunner{
 	
@@ -72,12 +73,18 @@ public class MybatisGeneratorShellRunner{
 			Context context = contexts.get(i);
 			String property = System.getProperty("user.dir");
 			JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = context.getJavaModelGeneratorConfiguration();
-			javaModelGeneratorConfiguration.setTargetProject(property + javaModelGeneratorConfiguration.getTargetProject());
 			SqlMapGeneratorConfiguration sqlMapGeneratorConfiguration = context.getSqlMapGeneratorConfiguration();
-			sqlMapGeneratorConfiguration.setTargetProject(property + sqlMapGeneratorConfiguration.getTargetProject());
 			JavaClientGeneratorConfiguration javaClientGeneratorConfiguration = context.getJavaClientGeneratorConfiguration();
-			javaClientGeneratorConfiguration.setTargetProject(property + javaClientGeneratorConfiguration.getTargetProject());
 			JDBCConnectionConfiguration jdbcConnectionConfiguration = context.getJdbcConnectionConfiguration();
+			
+			javaModelGeneratorConfiguration.setTargetPackage(APPLICATION_YML.getProperty(javaModelGeneratorConfiguration.getTargetPackage()));
+			sqlMapGeneratorConfiguration.setTargetPackage(APPLICATION_YML.getProperty(sqlMapGeneratorConfiguration.getTargetPackage()));
+			javaClientGeneratorConfiguration.setTargetPackage(APPLICATION_YML.getProperty(javaClientGeneratorConfiguration.getTargetPackage()));
+			
+			javaModelGeneratorConfiguration.setTargetProject(property + javaModelGeneratorConfiguration.getTargetProject());
+			sqlMapGeneratorConfiguration.setTargetProject(property + sqlMapGeneratorConfiguration.getTargetProject());
+			javaClientGeneratorConfiguration.setTargetProject(property + javaClientGeneratorConfiguration.getTargetProject());
+			
 			jdbcConnectionConfiguration.setDriverClass(APPLICATION_YML.getProperty(jdbcConnectionConfiguration.getDriverClass()));
 			jdbcConnectionConfiguration.setConnectionURL(APPLICATION_YML.getProperty(jdbcConnectionConfiguration.getConnectionURL()));
 			jdbcConnectionConfiguration.setUserId(APPLICATION_YML.getProperty(jdbcConnectionConfiguration.getUserId()));
