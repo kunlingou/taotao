@@ -1,5 +1,7 @@
 package utils.util;
 
+import java.util.Objects;
+
 /**
  * string字符串工具类
  * @author goukunlin
@@ -41,5 +43,22 @@ public class StringUtil {
 	
 	public static boolean isEmpty(String obj) {
 		return obj == null || "".equals(obj);
+	}
+	
+	public static String bytesToHexString(byte[] src) {
+	    int len = 0;
+	    if(Objects.isNull(src) || (len = src.length)==0) {
+	        return "";
+	    }
+	    StringBuilder sb = new StringBuilder();
+	    for(int i=0;i<len;i++) {
+	        int v = src[i] & 0xFF;
+	        String hv = Integer.toHexString(v).toUpperCase();
+	        if(hv.length()<2) {
+	            sb.append("0");
+	        }
+	        sb.append(hv);
+	    }
+	    return sb.toString();
 	}
 }
