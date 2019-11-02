@@ -48,7 +48,7 @@ public class StringUtil {
 	public static String bytesToHexString(byte[] src) {
 	    int len = 0;
 	    if(Objects.isNull(src) || (len = src.length)==0) {
-	        return "";
+	        return StringUtil.EMPTY;
 	    }
 	    StringBuilder sb = new StringBuilder();
 	    for(int i=0;i<len;i++) {

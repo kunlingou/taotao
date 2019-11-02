@@ -29,7 +29,7 @@ public class FileUtil {
         return fileToBytes(new File(fileName));
     }
 
-    public static byte[] fileToBytes(File file) throws IOException {
+    public static byte fileToBytes(File file)[] throws IOException {
         try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
             ByteArrayOutputStream out = new ByteArrayOutputStream(1024);){
             flow(in, out);
