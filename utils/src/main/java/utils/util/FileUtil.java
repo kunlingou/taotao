@@ -13,16 +13,27 @@ import java.io.OutputStream;
 public class FileUtil {
 
     public static void main(String[] args) throws IOException {
-        FiletoHexStringTxtFile("D:\\engine_demo_table1.ibd","D:\\engine_demo_table1.txt");
+        FiletoHexStringTxtFile("D:\\engine_demo_table0.ibd","D:\\engine_demo_table0.txt",16);
+        FiletoHexStringTxtFile("D:\\engine_demo_table1.ibd","D:\\engine_demo_table1.txt",16);
     }
     
     /**
      * 将文件以16进制的形式存储在txt中
-     * @throws IOException 
+     * @param src
+     * @param tar
+     * @param newLine 换行每行字符长度，小于1时不换行
+     * @throws IOException
      */
-    public static void FiletoHexStringTxtFile(String src, String tar) throws IOException {
+    public static void FiletoHexStringTxtFile(String src, String tar,int newLine) throws IOException {
         String bytesToHexString = StringUtil.bytesToHexString(fileToBytes(src));
-        BytesToFile(bytesToHexString.getBytes(), tar);
+        StringBuffer sb = new StringBuffer();
+        if(newLine>0) {
+            for(int i=0,len=bytesToHexString.length();i<len;i+=newLine) {
+                sb.append(bytesToHexString.substring(i, len<i+newLine?len:i+newLine));
+                sb.append("\r\n");
+            }
+        }
+        BytesToFile(sb.toString().getBytes(), tar);
     }
 
     public static byte[] fileToBytes(String fileName) throws IOException {
